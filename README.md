@@ -1,6 +1,6 @@
 # RubyFrontMatter
 
-TODO: Write a gem description
+simple &amp; extensible front matter parsing in text documents for ruby
 
 ## Installation
 
@@ -18,7 +18,45 @@ Or install it yourself as:
 
 ## Usage
 
-TODO: Write usage instructions here
+
+### configuring front matter format and delimiter
+
+  **RubyFrontMatter::Parser** allows to inject a custom parser for customizing the front matter format.
+
+  For example, if you want **JSON** format
+
+```ruby
+ 
+   str = '
+---
+  {
+    "front":   "matters",
+    "matters": "front"
+  }
+---
+'
+  RubyFrontMatter::Parser(parser: JSON).parse(str)
+  #=>  [{'front' => 'matters', 'matters' => 'front'}, '']
+```
+
+Any ruby object that responds to ```.load(string)``` can be used as parser.
+
+
+### configuring delimiter string
+
+```ruby
+str = '
+====
+  {
+    "front":   "matters",
+    "matters": "front"
+  }
+====
+'
+
+p = RubyFrontMatter::Parser.new(delimiter: '====', parser: JSON)
+#=> [{'front' => 'matters', 'matters' => 'front'}, '']
+```
 
 ## Contributing
 
