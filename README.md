@@ -36,7 +36,7 @@ some text that would be left unparsed
 in order to parse the front matter and get the text without it:
 
 ```ruby
-FrontMatter::Parser.new().parse(str)
+RubyFrontMatter::Parser.new().parse(str)
 #=> [{'front' => { 'matter': 'matters' } }, 'some text that would be left unparsed']
 ```
 
